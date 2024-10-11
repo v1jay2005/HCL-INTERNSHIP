@@ -9,7 +9,7 @@
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <form class="login-form">
+        <form class="login-form" id="loginForm">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>
 
@@ -18,8 +18,28 @@
 
             <button type="submit">Login</button>
 
-            <p class="signup-link">Don't have an account? <a href="#">Sign up here</a></p>
+            <p class="signup-link">Don't have an account? <a href="signup.html">Sign up here</a></p>
+            <p id="loginError" style="color: red; display: none;">Please fill in all fields!</p>
         </form>
     </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('loginError');
+
+            if (!username || !password) {
+                errorMessage.textContent = 'Please fill in all fields!';
+                errorMessage.style.display = 'block';
+            } else {
+                alert('Login successful!');
+                errorMessage.style.display = 'none';
+                window.location.href = "home.html";
+            }
+        });
+    </script>
 </body>
 </html>
